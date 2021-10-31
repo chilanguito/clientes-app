@@ -13,12 +13,6 @@ export class ClienteService {
   constructor(private http: HttpClient) { }
 
   getClientes(): Observable<Cliente[]> {
-    //return of(CLIENTES);
-    //return this.http.get(this.urlEndPoint).pipe(map(response => response as Cliente[]));
-    const headers = new HttpHeaders();
-
-    headers.set('Access-Control-Allow-Origin',  'http://localhost:8080/api/clientes');
-
     return this.http.get<Cliente[]>(this.urlEndPoint);
   }
 
