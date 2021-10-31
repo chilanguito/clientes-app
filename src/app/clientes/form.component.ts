@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Cliente } from './cliente';
-import {ClienteService} from './cliente.service';
-import{Router} from '@angular/router';
+import { ClienteService } from './cliente.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form',
@@ -18,18 +18,11 @@ export class FormComponent implements OnInit {
   }
 
   public create(): void {
-    console.log("Clicked!")
-    console.log(this.cliente)
+
+    this.clienteService.create(this.cliente).subscribe(
+      response => this.router.navigate(['/clientes'])
+    )
   }
-
-
-public create() : void{
-
-  this.clienteService.create(this.cliente).subscribe(
-    response => this.router.navigate(['/clientes'])
-  )
-}
-
 
 
 }
