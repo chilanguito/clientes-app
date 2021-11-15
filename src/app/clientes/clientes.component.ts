@@ -6,7 +6,7 @@ import { tap } from 'rxjs/operators';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
-  selector: 'app-clientes',
+selector: 'app-clientes',
   templateUrl: './clientes.component.html'
 })
 export class ClientesComponent implements OnInit {
