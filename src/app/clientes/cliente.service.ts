@@ -16,16 +16,16 @@ export class ClienteService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  getClientes(page:number): Observable<any> {
-    return this.http.get(this.urlEndPoint+ '/page/'+page).pipe(
+  getClientes(page: number): Observable<any> {
+    return this.http.get(this.urlEndPoint + '/page/' + page).pipe(
       tap((response: any) => {
         console.log('ClienteService: tap 1');
         (response.content as Cliente[]).forEach(cliente => {
           console.log(cliente.nombre);
         });
       }),
-      map((response:any) => {
-         (response.content as Cliente[]).map(cliente => {
+      map((response: any) => {
+        (response.content as Cliente[]).map(cliente => {
           cliente.nombre = cliente.nombre.toUpperCase();
           //let datePipe = new DatePipe('es');
           //cliente.createAt = datePipe.transform(cliente.createAt, 'EEEE dd, MMMM yyyy');
@@ -91,6 +91,20 @@ export class ClienteService {
       catchError(e => {
         console.error(e.error.mensaje);
         swal(e.error.mensaje, e.error.error, 'error');
+        return throwError(e);
+      })
+    );
+  }
+
+  subirFoto(archivo: File, id) :Observable<Cliente>{
+    let formData = new FormData();
+    formData.append("archivo", archivo);
+    formData.append("id",id);
+    return this.http.post(`${this.urlEndPoint}/upload/`,formData).pipe(
+      map((response:any) => response.cliente as Cliente),
+      catchError(e => {
+        console.error(e.error.mensaje);
+        swal('Error al subir foto', e.error.mensaje, 'error');
         return throwError(e);
       })
     );
