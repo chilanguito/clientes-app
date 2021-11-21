@@ -21,10 +21,9 @@
               <div class="input-group mb-3" >
                 <div class="custom-file">
                   <input (change)="seleccionarFoto($event)" type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon03">
-                  <label class="custom-file-label" for="inputGroupFileAddon03">Subir Foto</label>
                 </div>
                 <div class="input-group-append">
-                  <button (click)="subirFoto()" [disabled]="!fotoSeleccionada" class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon03">Buscar foto</button>
+                  <button (click)="subirFoto()" [disabled]="!fotoSeleccionada" class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon03">Subir foto</button>
                 </div>
               </div>
             </div>
