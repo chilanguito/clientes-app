@@ -12,7 +12,7 @@ import swal from 'sweetalert2';
 export class FormComponent implements OnInit {
 
   private cliente: Cliente = new Cliente();
-  regiones : Region[];
+  regiones: Region[];
   titulo: string = "Crear Cliente";
 
   errores: string[];
@@ -24,8 +24,8 @@ export class FormComponent implements OnInit {
 
   ngOnInit() {
     this.cargarCliente();
-    this.clienteService.getRegiones().subscribe(regiones=>{
-      this.regiones =  regiones;
+    this.clienteService.getRegiones().subscribe(regiones => {
+      this.regiones = regiones;
     })
   }
 
@@ -54,6 +54,7 @@ export class FormComponent implements OnInit {
   }
 
   update(): void {
+    console.log(this.cliente);
     this.clienteService.update(this.cliente)
       .subscribe(
         json => {
@@ -66,6 +67,10 @@ export class FormComponent implements OnInit {
           console.error(err.error.errors);
         }
       )
+  }
+
+  compararRegion(o1: Region, o2: Region) : Boolean{
+    return o1 === null || o2 === null  || o1 === undefined || o2 === undefined ? false : o1.id === o2.id;
   }
 
 }
