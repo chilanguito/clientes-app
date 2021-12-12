@@ -23,6 +23,6 @@ export class AuthService {
     params.set('username', usuario.username);
     params.set('password', usuario.password);
 
-    return this.http.post<any>(urlEndpoint, params, { headers: HttpHeaders });
+    return this.http.post<any>(urlEndpoint, params, { headers: headers });
   }
 }
