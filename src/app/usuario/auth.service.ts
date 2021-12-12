@@ -15,14 +15,16 @@ export class AuthService {
 
     const credenciales = btoa('angularapp' + ':' + '12345');
 
-    const headers = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlenconded', 'Authorization': 'Basic' + credenciales });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic ' + credenciales });
 
     let params = new URLSearchParams();
 
-    params.set('grand_type', 'password');
+    params.set('grant_type', 'password');
     params.set('username', usuario.username);
     params.set('password', usuario.password);
 
-    return this.http.post<any>(urlEndpoint, params, { headers: headers });
+    console.log(params.toString());
+
+    return this.http.post<any>(urlEndpoint, params.toString(), { headers: headers });
   }
 }
